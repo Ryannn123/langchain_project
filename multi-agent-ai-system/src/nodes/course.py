@@ -1,4 +1,4 @@
-from langchain.messages import SystemMessage
+from langchain.messages import SystemMessage, AIMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 from src.state import AgentState
@@ -13,6 +13,9 @@ def course_generator_node(state: AgentState):
 
     course_state_update = {}
     phase = ''
+    
+    if len(course.shortlisted_courses) == 1 and not course.confirmed_course:
+        return {'messages': AIMessage(f'Alright, can i know are you quite sure to study {course.shortlisted_courses[0]}? If still exploring, can let me know what other course you considering.')}
     
     if not course.confirmed_course:
         if len(course.shortlisted_courses) == 0:

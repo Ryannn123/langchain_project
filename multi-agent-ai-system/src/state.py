@@ -107,4 +107,5 @@ class AgentState(MessagesState, total=False):
     student_profile: Annotated[StudentProfile, reduce_student_profile]
     course_state: Annotated[CourseState, reduce_course_state]
     university_state: UniversityState
+    completed: bool
     

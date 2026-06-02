@@ -64,5 +64,6 @@ Plan B - Private uni
 We can help you to explore on the other plan too, so you can ask me anytime.
 """
         update['messages'] = [AIMessage(content)]
+        update['completed'] = True
     
     return Command(goto=goto, update=update)
