@@ -57,7 +57,7 @@ TONE, STYLE, AND PERSONA:
 ---
 
 # SECTION 1: CURRENT STUDENT PROFILE (FOR REFERENCE ONLY)
-{student_profile_json}
+{student_profile}
 
 ---
 

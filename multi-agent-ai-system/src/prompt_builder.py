@@ -1,6 +1,7 @@
 from src.prompts.master import GLOBAL_MASTER_PROMPT
 from src.prompts.registry import SopGates, PROMPT_REGISTRY
 from src.schemas import StudentProfile
+from src.utils import dict_to_yaml_like
 
 class PromptBuilder:
     def __init__(self, profile: StudentProfile) -> None:
@@ -17,11 +18,11 @@ class PromptBuilder:
         
         phase_directive = gate_config["phases"].get(phase_key, '')
         
-        student_profile_json = self.profile.model_dump_json(exclude_unset=True)
-        student_profile_json = 'No profile' if student_profile_json == '{}' else student_profile_json
+        student_profile = self.profile.model_dump(exclude_unset=True)
+        formatted_student_profile = 'No profile' if not student_profile else dict_to_yaml_like(student_profile)
         
         compiled_prompt = GLOBAL_MASTER_PROMPT.format(
-            student_profile_json=student_profile_json,
+            student_profile=formatted_student_profile,
             sop_gate_prompt=gate_config['master'],
             phase_directive=phase_directive
         )

@@ -164,4 +164,3 @@ class StudentProfile(BaseModel):
     qualification: str | None = None
     course_detail: CourseDetail = Field(default_factory=CourseDetail, description='Extact only info related to course, dont extract other info such as university. Context: "Foudation in Business" must extract under pathway not course')
     university_detail: UniversityDetail = Field(default_factory=UniversityDetail, description='Extact only info related to university including concern, preference about university.')
-    concern_detail: list[str] = Field(default_factory=list)
