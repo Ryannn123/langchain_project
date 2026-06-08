@@ -19,7 +19,7 @@ class PromptBuilder:
         phase_directive = gate_config["phases"].get(phase_key, '')
         
         student_profile = self.profile.model_dump(exclude_unset=True)
-        formatted_student_profile = 'No profile' if not student_profile else dict_to_yaml_like(student_profile)
+        formatted_student_profile = 'No profile' if not student_profile else dict_to_yaml_like(student_profile, exclude_empty=True)
         
         compiled_prompt = GLOBAL_MASTER_PROMPT.format(
             student_profile=formatted_student_profile,
